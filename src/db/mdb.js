@@ -26,7 +26,7 @@ app.use(BodyParser.text({limit: '64mb'}));
 app.use(BodyParser.urlencoded({limit: '64mb', extended: false }));
 app.post('/add/:id', async function(request, response){
     if(verify(request.ip))
-        FileSystem.appendFile('./obj/' + request.params.id + '.json', request.body, function(readErr){
+        FileSystem.appendFile('./db/' + request.params.id + '.json', request.body, function(readErr){
             if(readErr){
                 console.error(_.MSG.APPEND_ERR + request.params.id + readErr)
                 response.send('fail')
@@ -38,7 +38,7 @@ app.post('/add/:id', async function(request, response){
 })
 app.get('/find/:id', async function(request, response){
     if(verify(request.ip))
-        FileSystem.access('./obj/' + request.params.id + '.json', FileSystem.constants.F_OK, function(readErr){
+        FileSystem.access('./db/' + request.params.id + '.json', FileSystem.constants.F_OK, function(readErr){
             if(readErr){
                 console.error(_.MSG.READ_ERR + request.params.id + readErr)
                 response.send('fail')
@@ -50,7 +50,7 @@ app.get('/find/:id', async function(request, response){
 })
 app.get('/load/:id', async function(request, response){
     if(verify(request.ip))
-        FileSystem.readFile('./obj/' + request.params.id + '.json', function(readErr, readData){
+        FileSystem.readFile('./db/' + request.params.id + '.json', function(readErr, readData){
             if(readErr){
                 console.error(_.MSG.READ_ERR + request.params.id + readErr)
                 response.send('')
@@ -62,7 +62,7 @@ app.get('/load/:id', async function(request, response){
 })
 app.post('/save/:id', async function(request,response){
     if(verify(request.ip))
-        FileSystem.writeFile('./obj/' + request.params.id + '.json', request.body, function(writeErr){
+        FileSystem.writeFile('./db/' + request.params.id + '.json', request.body, function(writeErr){
             if(writeErr){
                 console.error(_.MSG.WRITE_ERR + request.params.id + writeErr)
                 response.send('fail')
