@@ -4,7 +4,7 @@
   "description": "A project submission web app for Sakon Nakhon Rajabhat University",
   "main": "index.js",
   "scripts": {
-    "test": "node src/index.js&node src/db/mdb&"
+    "start": "node src/index.js&node src/db/mdb&"
   },
   "keywords": [
     "project",
