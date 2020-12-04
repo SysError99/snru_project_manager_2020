@@ -69,7 +69,7 @@ const constant = {
             },
             NOT_EXIST: 'This project does not exist!',
             TITLE: 'Projects',
-            UP:{
+            SUBMIT:{
                 FAIL: 'Upload project failed, due to internal server error.',
                 INVALID: 'Data type received is invalid.',
                 SUCCESS: 'Successfully uploaded document.'

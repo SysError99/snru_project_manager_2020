@@ -261,7 +261,7 @@ app.post('/projsubmit/:type/:id', upload.single('file'), function(req,res){
         typeof req.params.type !== 'string' ||
         typeof req.params.id !== 'string'
     ){
-        res.send(View.alert(_.MSG.PROJ.UP.INVALID))
+        res.send(View.alert(_.MSG.PROJ.SUBMIT.INVALID))
         return
     }
     auth(req,res,async function(user){

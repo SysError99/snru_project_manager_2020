@@ -258,30 +258,30 @@ const ProjectManager = function(){
         return new Promise(async function(resolve){
             let project = await A.read(projId)
             if(project === null){
-                resolve(_.MSG.PROJ.UP.INVALID)
+                resolve(_.MSG.PROJ.SUBMIT.INVALID)
                 return
             }
             if(!A.perm(usr,project)){
-                resolve(_.MSG.PROJ.UP.INVALID)
+                resolve(_.MSG.PROJ.SUBMIT.INVALID)
                 return
             }
             let fnameArray = fname.split('.')
             let fnameExtension = '.' + fnameArray[fnameArray.length-1]
             let fileName = project.id + (new Date().toISOString().split(':').join('_').split('.').join('_')) + fnameExtension
             if(typeof project[type] !== 'string'){
-                resolve(_.MSG.PROJ.UP.INVALID)
+                resolve(_.MSG.PROJ.SUBMIT.INVALID)
                 return
             }
             project[type] = fileName
             if(!(await Mdb.write(fileName, JSON.stringify([content,base64])))){
-                resolve(_.MSG.PROJ.UP.FAIL)
+                resolve(_.MSG.PROJ.SUBMIT.FAIL)
                 return
             }
             if(!(await Mdb.write('proj.' + project.id, JSON.stringify(project.export())))){
-                resolve(_.MSG.PROJ.UP.FAIL)
+                resolve(_.MSG.PROJ.SUBMIT.FAIL)
                 return
             }
-            resolve(_.MSG.PROJ.UP.SUCCESS)
+            resolve(_.MSG.PROJ.SUBMIT.SUCCESS)
         })
     }
 }
