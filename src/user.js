@@ -1,5 +1,4 @@
 const Hash = require('./hash')
-const Project = require('./project')
 /**
  * A logged in user class.
  * @param {string} usr Username
@@ -12,7 +11,7 @@ const User = function(usr, type, name, category){
     /**  @type {string} Username of this user */
     this.username = (typeof usr === 'string') ? usr : ''
     /** @type {string} Authentication token */
-    this.token = Hash.randHex(32)
+    this.token = Hash.randHex(256)
     /** @type {string} User type */
     this.type = (typeof type === 'string') ? type : 'student'
     /** @type {number} User session age */
